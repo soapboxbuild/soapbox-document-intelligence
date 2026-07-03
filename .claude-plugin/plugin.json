@@ -1,0 +1,15 @@
+{
+  "name": "document-intelligence",
+  "version": "0.1.0",
+  "description": "Document Intelligence for real estate ESG — classify uploaded documents, extract typed structured data from utility bills, energy audits, leases, and PCAs, digitize charts and tables from PDFs, and keep everything RAG-searchable.",
+  "author": { "name": "Soapbox", "url": "https://soapbox.build" },
+  "homepage": "https://github.com/soapboxbuild/soapbox-document-intelligence",
+  "license": "Apache-2.0",
+  "mcpServers": {
+    "pdf-chart-parser": {
+      "type": "http",
+      "url": "https://pdf-chart-parser.mcp.soapbox.build/mcp"
+    }
+  },
+  "skills": ["skills"]
+}

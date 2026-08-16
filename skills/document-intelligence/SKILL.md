@@ -43,28 +43,24 @@ Use the schema for the detected type in `references/extraction-schemas.md`. Rule
   eyeballing pixel values. If the MCP is unavailable, extract only clearly labeled data
   points and flag the rest.
 
-### Scanned / image-only documents
+#### Scanned / image-only documents
 
-A document with zero extractable text (a pure image scan, common for older
-as-built drawings, riser diagrams, and equipment schedules) comes back EMPTY
-from any text-search or content-extraction tool. That is expected behavior
-for a scanned file. It is not evidence the fact does not exist, and it is
-not a dead end.
+This is distinct from the partially-legible scan case above: a document with zero
+extractable text (a pure image scan, common for older as-built drawings, riser diagrams,
+and equipment schedules) comes back EMPTY from any text-search or content-extraction tool.
+That is expected behavior for a scanned file. It is not evidence the fact does not exist.
 
-When this happens: confirm the file actually exists in the asset's files
-first, then pull its raw bytes and read it directly via native PDF/image
-vision, the same capability used in the Classify step above, just pointed
-at whatever page or sheet actually carries the fact you need.
+When this happens: confirm the file actually exists in the asset's files first, then read
+it directly via native PDF/image vision (the same capability used in Classify), pointed at
+whatever page or sheet carries the fact you need.
 
-For a large multi-sheet set, do not open the whole set at once. Look first
-for a sheet index or title block (often on an early page or a
-table-of-contents sheet) and go straight to the 2-6 sheets likely to carry
-the fact in question (an equipment schedule, a riser diagram) rather than
-paging through the entire set.
+For a large multi-sheet set, do not open the whole set at once. Look first for a sheet
+index or title block (often on an early page or a table-of-contents sheet) and go straight
+to the 2-6 sheets likely to carry the fact in question (an equipment schedule, a riser
+diagram) rather than paging through the entire set.
 
-Cite what you read and where, for example "CP-1, 500 MBH, per Sheet M-2
-equipment schedule," not a paraphrase of "the drawings." The sheet
-reference is what makes the fact verifiable later.
+Cite what you read and where, for example "CP-1, 500 MBH, per Sheet M-2 equipment schedule,"
+not a paraphrase of "the drawings." The sheet reference is what makes the fact verifiable later.
 
 ### 3. Write to the platform
 

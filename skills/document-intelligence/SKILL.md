@@ -1,6 +1,6 @@
 ---
 name: document-intelligence
-version: 0.1.0
+version: 0.2.0
 description: >
   Turn unstructured real estate documents into typed, verifiable data. Classifies uploads
   (utility bill, energy audit, lease, PCA, drawing, regulatory filing), extracts structured
@@ -42,6 +42,29 @@ Use the schema for the detected type in `references/extraction-schemas.md`. Rule
   exhibits (OM comps, audit baseline graphs, rent-roll tables) go through it rather than
   eyeballing pixel values. If the MCP is unavailable, extract only clearly labeled data
   points and flag the rest.
+
+### Scanned / image-only documents
+
+A document with zero extractable text (a pure image scan, common for older
+as-built drawings, riser diagrams, and equipment schedules) comes back EMPTY
+from any text-search or content-extraction tool. That is expected behavior
+for a scanned file. It is not evidence the fact does not exist, and it is
+not a dead end.
+
+When this happens: confirm the file actually exists in the asset's files
+first, then pull its raw bytes and read it directly via native PDF/image
+vision, the same capability used in the Classify step above, just pointed
+at whatever page or sheet actually carries the fact you need.
+
+For a large multi-sheet set, do not open the whole set at once. Look first
+for a sheet index or title block (often on an early page or a
+table-of-contents sheet) and go straight to the 2-6 sheets likely to carry
+the fact in question (an equipment schedule, a riser diagram) rather than
+paging through the entire set.
+
+Cite what you read and where, for example "CP-1, 500 MBH, per Sheet M-2
+equipment schedule," not a paraphrase of "the drawings." The sheet
+reference is what makes the fact verifiable later.
 
 ### 3. Write to the platform
 
